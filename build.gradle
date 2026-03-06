@@ -18,7 +18,23 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://maven.terraformersmc.com/"
+            }
+        }
+        filter {
+            includeGroup "com.terraformersmc"
+            includeGroup "dev.emi"
+        }
+    }
 }
 
 base {
@@ -133,6 +149,14 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    // TFC Dependencies
+    implementation "curse.maven:terrafirmacraft-302973:7343990"
+    implementation "curse.maven:patchouli-306770:6842247"
+
+    // local runtime
+    localRuntime "curse.maven:yeetusexperimentus-635427:5444189"
+    implementation "dev.emi:emi-neoforge:${emi_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
