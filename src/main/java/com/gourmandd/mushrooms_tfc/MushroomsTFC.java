@@ -1,5 +1,11 @@
 package com.gourmandd.mushrooms_tfc;
 
+import com.gourmandd.mushrooms_tfc.datagen.DatagenEntryPoint;
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlockEntities;
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlocks;
+import com.gourmandd.mushrooms_tfc.registry.MushrromsTFCItems;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -7,7 +13,6 @@ import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.neoforge.common.NeoForge;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MushroomsTFC.MODID)
@@ -16,21 +21,6 @@ public class MushroomsTFC {
     public static final String MODID = "mushrooms_tfc";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-//    // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
-//    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-//    // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
-//    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-//    // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
-//    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-//
-//    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-//    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-//    // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-//    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
-//
-//    // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
-//    public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
-//            .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
 //
 //    // Creates a creative tab with the id "examplemod:example_tab" for the example item, that is placed after the combat tab
 //    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -44,6 +34,14 @@ public class MushroomsTFC {
     public MushroomsTFC(IEventBus modEventBus, ModContainer modContainer) {
 
         //NeoForge.EVENT_BUS.register(this);
-        //modEventBus.addListener(this::addCreative);
+        MushroomsTFCBlocks.BLOCKS.register(modEventBus);
+        MushroomsTFCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        MushrromsTFCItems.ITEMS.register(modEventBus);
+
+        modEventBus.addListener(DatagenEntryPoint::gatherData);
+
+        if (FMLEnvironment.dist == Dist.CLIENT){
+            ClientEventHandler.init(modEventBus, modContainer);
+        }
     }
 }

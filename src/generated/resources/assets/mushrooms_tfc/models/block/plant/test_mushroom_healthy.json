@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "mushrooms_tfc:block/plant/test_healthy",
+    "particle": "mushrooms_tfc:block/plant/test_healthy"
+  }
+}

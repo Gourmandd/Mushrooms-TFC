@@ -1,0 +1,7 @@
+// 1.21.1	2026-03-08T12:39:34.544940595	Block States: mushrooms_tfc
+0a1354bf3f2e7113e17b759c397e208f0501cfe8 assets/mushrooms_tfc/blockstates/plant/test_mushroom.json
+4133121cc219d91550f893d9ef5d8c02595491ca assets/mushrooms_tfc/models/block/plant/test_mushroom.json
+4bb763f29e2b5706070d9115e8d7a8968819e157 assets/mushrooms_tfc/models/block/plant/test_mushroom_dormant.json
+3adad5ae17dc3595c66eb31314b2d52b32aa02cc assets/mushrooms_tfc/models/block/plant/test_mushroom_flowering.json
+4133121cc219d91550f893d9ef5d8c02595491ca assets/mushrooms_tfc/models/block/plant/test_mushroom_fruiting.json
+34432ab3965aa0f1c592f6cfa616db6d395f8201 assets/mushrooms_tfc/models/block/plant/test_mushroom_healthy.json
