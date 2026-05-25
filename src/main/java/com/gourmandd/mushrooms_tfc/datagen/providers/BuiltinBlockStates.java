@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 public class BuiltinBlockStates extends BlockStateProvider {
 
-    final static boolean debugDormant = true;
+    final static boolean debugDormant = false;
 
     public BuiltinBlockStates(PackOutput output,  ExistingFileHelper exFileHelper) {
         super(output, MushroomsTFC.MODID, exFileHelper);
@@ -82,7 +82,7 @@ public class BuiltinBlockStates extends BlockStateProvider {
         ModelFile modelDormant = createModel(getBlockModelString(block.getId()) + "_dormant", getDormantModel());
 
         // for the block's item model.
-        createModel(getBlockModelString(block.getId()), "mushrooms_tfc:block/shelf_mushroom").texture("particle", large_texture3);
+        createModel(getBlockModelString(block.getId()), "minecraft:cross").texture("cross", large_texture3).texture("particle", large_texture3);
 
         VariantBlockStateBuilder builder = this.getVariantBuilder(block.get());
 

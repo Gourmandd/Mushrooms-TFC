@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mushrooms_tfc:block/plant/portobello_fruiting"
+  }
+}

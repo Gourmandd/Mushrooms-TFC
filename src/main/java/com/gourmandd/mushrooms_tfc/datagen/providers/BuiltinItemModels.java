@@ -2,11 +2,14 @@ package com.gourmandd.mushrooms_tfc.datagen.providers;
 
 import com.gourmandd.mushrooms_tfc.MushroomsTFC;
 import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlocks;
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCItems;
 import com.gourmandd.mushrooms_tfc.util.Mushrooms;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -21,19 +24,32 @@ public class BuiltinItemModels extends ItemModelProvider {
     @Override
     protected void registerModels() {
         Stream.of(Mushrooms.values()).forEach(mushroom -> {
-            simpleBlock(MushroomsTFCBlocks.MUSHROOMS.get(mushroom));
+            mushroomItem(MushroomsTFCItems.MUSHROOMS.get(mushroom), itemTexture(mushroom));
+            mushroomBlockItem(MushroomsTFCBlocks.MUSHROOMS.get(mushroom));
         });
     }
 
-    private void simpleBlock(DeferredHolder<Block, ? extends Block> block){
-        withExistingParent(getItemModelString(block.getId()), getBlockModelLocation(block.getId()));
-    }
-
-    private String getItemModelString(ResourceLocation block){
-        return block.getNamespace() + ":item/" + block.getPath();
+    private String getItemModelString(ResourceLocation id){
+        return id.getNamespace() + ":item/" + id.getPath();
     }
 
     private ResourceLocation getBlockModelLocation(ResourceLocation block){
         return ResourceLocation.fromNamespaceAndPath(block.getNamespace(), "block/" + block.getPath());
+    }
+
+    private void mushroomItem(DeferredHolder<Item, Item> item, ResourceLocation texture){
+        this.getBuilder(getItemModelString(item.getId())).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", texture);
+    }
+
+    private void mushroomBlockItem(DeferredHolder<Block, Block> block){
+        withExistingParent(getItemModelString(block.getId()), getBlockModelLocation(block.getId()));
+    }
+
+    private ResourceLocation itemTexture(Mushrooms mushroom){
+        if (mushroom.isShelfMushroom()){
+            return ResourceLocation.fromNamespaceAndPath(MushroomsTFC.MODID, "block/plant/" + mushroom.getSerializedName() + "_large_fruiting");
+        } else {
+            return ResourceLocation.fromNamespaceAndPath(MushroomsTFC.MODID, "block/plant/" + mushroom.getSerializedName() + "_fruiting");
+        }
     }
 }

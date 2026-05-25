@@ -1,4 +1,7 @@
-// 1.21.1	2026-04-02T10:09:46.480167196	Item Models: mushrooms_tfc
+// 1.21.1	2026-05-25T20:31:33.155306602	Item Models: mushrooms_tfc
+18aaf39b42366f7d42898b19342133f9f49e15bb assets/mushrooms_tfc/models/item/food/chicken_of_the_woods.json
+bd1f150df2d737f9337ca65c8b0761c0362235e7 assets/mushrooms_tfc/models/item/food/fly_agaric.json
+a3e3a119a6935742b620c371b8b005815cc40712 assets/mushrooms_tfc/models/item/food/portobello.json
 4d76797434e6cb66801c1ea9825ff5e9f81705b5 assets/mushrooms_tfc/models/item/plant/chicken_of_the_woods.json
 a8d8c9d62f84a144d97cadbc8d013fae68e9f2fd assets/mushrooms_tfc/models/item/plant/fly_agaric.json
 37f9a4d8515a670c52be82698ca410a4dca8fb71 assets/mushrooms_tfc/models/item/plant/portobello.json
