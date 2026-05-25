@@ -3,7 +3,7 @@ package com.gourmandd.mushrooms_tfc;
 import com.gourmandd.mushrooms_tfc.datagen.DatagenEntryPoint;
 import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlockEntities;
 import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlocks;
-import com.gourmandd.mushrooms_tfc.registry.MushrromsTFCItems;
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCItems;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public class MushroomsTFC {
         //NeoForge.EVENT_BUS.register(this);
         MushroomsTFCBlocks.BLOCKS.register(modEventBus);
         MushroomsTFCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        MushrromsTFCItems.ITEMS.register(modEventBus);
+        MushroomsTFCItems.ITEMS.register(modEventBus);
 
         modEventBus.addListener(DatagenEntryPoint::gatherData);
 

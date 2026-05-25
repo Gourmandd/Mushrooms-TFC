@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "lifecycle=dormant": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_dormant"
+    },
+    "lifecycle=flowering": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering"
+    },
+    "lifecycle=fruiting": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_fruiting"
+    },
+    "lifecycle=healthy": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_healthy"
+    }
+  }
+}

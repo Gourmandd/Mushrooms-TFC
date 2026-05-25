@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "mushrooms_tfc:block/plant/test_fruiting",
-    "particle": "mushrooms_tfc:block/plant/test_fruiting"
-  }
-}

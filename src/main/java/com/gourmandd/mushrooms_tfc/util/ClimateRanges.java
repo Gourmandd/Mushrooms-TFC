@@ -1,17 +1,19 @@
 package com.gourmandd.mushrooms_tfc.util;
 
 import com.gourmandd.mushrooms_tfc.MushroomsTFC;
+import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.dries007.tfc.util.data.DataManager;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Locale;
+import java.util.Map;
 
 public class ClimateRanges {
-
-    //public static final Map<CoreFruitTrees, DataManager.Reference<ClimateRange>> FRUIT_TREES = Helpers.mapOf(CoreFruitTrees.class, tree -> register("plant/" + tree.name() + "_tree"));
-
+    
     public static final DataManager.Reference<ClimateRange> TEST_MUSHROOM = register("test_mushroom");
+
+    public static final Map<Mushrooms, DataManager.Reference<ClimateRange>> MUSHROOMS = Helpers.mapOf(Mushrooms.class, mushroom -> register("plant/" + mushroom.name()));
 
     private static DataManager.Reference<ClimateRange> register(String name)
     {

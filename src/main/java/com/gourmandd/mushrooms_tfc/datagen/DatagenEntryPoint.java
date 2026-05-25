@@ -2,6 +2,8 @@ package com.gourmandd.mushrooms_tfc.datagen;
 
 import com.gourmandd.mushrooms_tfc.MushroomsTFC;
 import com.gourmandd.mushrooms_tfc.datagen.providers.BuiltinBlockStates;
+import com.gourmandd.mushrooms_tfc.datagen.providers.BuiltinBlockTags;
+import com.gourmandd.mushrooms_tfc.datagen.providers.BuiltinClimateRanges;
 import com.gourmandd.mushrooms_tfc.datagen.providers.BuiltinItemModels;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -34,6 +36,8 @@ public class DatagenEntryPoint {
 
         add(event, new BuiltinBlockStates(output, event.getExistingFileHelper()));
         add(event, new BuiltinItemModels(output, event.getExistingFileHelper()));
+        add(event, new BuiltinBlockTags(output, lookup, event.getExistingFileHelper()));
+        add(event, new BuiltinClimateRanges(output, lookup));
 
 //        add(event, new BuiltinRecipes(output, lookup));
 //

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "mushrooms_tfc:block/plant/fly_agaric_fruiting",
+    "particle": "mushrooms_tfc:block/plant/fly_agaric_fruiting"
+  }
+}

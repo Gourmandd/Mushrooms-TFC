@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "lifecycle=dormant": {
+      "model": "mushrooms_tfc:block/plant/fly_agaric_dormant"
+    },
+    "lifecycle=flowering": {
+      "model": "mushrooms_tfc:block/plant/fly_agaric_flowering"
+    },
+    "lifecycle=fruiting": {
+      "model": "mushrooms_tfc:block/plant/fly_agaric_fruiting"
+    },
+    "lifecycle=healthy": {
+      "model": "mushrooms_tfc:block/plant/fly_agaric_healthy"
+    }
+  }
+}

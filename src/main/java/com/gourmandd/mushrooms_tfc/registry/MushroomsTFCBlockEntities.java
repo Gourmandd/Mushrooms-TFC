@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.Collection;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -18,9 +19,9 @@ public class MushroomsTFCBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MushroomsTFC.MODID);
 
-    public static final TFCBlockEntities.Id<BerryBushBlockEntity> MUSHROOM = register("berry_bush", MushroomBlockEntity::new, Stream.of(
-            MushroomsTFCBlocks.TEST_MUSHROOM
-    ));
+    public static final TFCBlockEntities.Id<BerryBushBlockEntity> MUSHROOMS = register("mushroom", MushroomBlockEntity::new, Stream.of(
+            MushroomsTFCBlocks.MUSHROOMS.values()
+    ).flatMap(Collection::stream));
 
     private static <T extends BlockEntity> TFCBlockEntities.Id<T> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Stream<? extends Supplier<? extends Block>> blocks)
     {

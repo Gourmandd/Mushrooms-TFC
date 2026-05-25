@@ -1,15 +1,25 @@
 package com.gourmandd.mushrooms_tfc.util;
 
+import com.gourmandd.mushrooms_tfc.block.FieldMushroomBlock;
+import com.gourmandd.mushrooms_tfc.block.ShelfMushroomBlock;
+import com.gourmandd.mushrooms_tfc.block.SymbioteMushroomBlock;
+import com.gourmandd.mushrooms_tfc.item.MushroomBlockItem;
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCItems;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
 import static net.dries007.tfc.common.blocks.plant.fruit.Lifecycle.*;
 
-public enum Mushrooms implements RegistryMushroom {
+public enum Mushrooms implements RegistryMushroom, StringRepresentable {
 
     PORTOBELLO(MushroomType.FIELD, MapColor.COLOR_BROWN, true, new Lifecycle[] {FLOWERING, HEALTHY, DORMANT, DORMANT, DORMANT, DORMANT, HEALTHY, FLOWERING, FLOWERING, FRUITING, FRUITING, FRUITING}),
     FLY_AGARIC(MushroomType.SYMBIOTE, MapColor.TERRACOTTA_RED, true, new Lifecycle[] {DORMANT, DORMANT, HEALTHY, FLOWERING, FLOWERING, FRUITING, FRUITING, FRUITING, FLOWERING, HEALTHY, DORMANT, DORMANT}),
@@ -70,6 +80,36 @@ public enum Mushrooms implements RegistryMushroom {
 
     @Override
     public Lifecycle[] getLifecycle() {
-        return new Lifecycle[0];
+        return lifecycle;
+    }
+
+    @Override
+    public TagKey<Block> getSupportingBlockTag() {
+        return growsOnTag;
+    }
+
+    public Block createBlock(){
+        //TODO: create and set proper climate ranges.
+        switch (type){
+            case FIELD -> {
+                return new FieldMushroomBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.GRASS), ClimateRanges.TEST_MUSHROOM, MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
+            }
+            case SHELF -> {
+                return new ShelfMushroomBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.GRASS), ClimateRanges.TEST_MUSHROOM, MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
+            }
+            case SYMBIOTE -> {
+                return new SymbioteMushroomBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.GRASS), ClimateRanges.TEST_MUSHROOM, MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
+            }
+        }
+        return null;
+    }
+
+    public BlockItem createItem(Block block) {
+        return new MushroomBlockItem(block, ClimateRanges.MUSHROOMS.get(this), lifecycle);
+    }
+
+    @Override
+    public @NotNull String getSerializedName() {
+        return serializedName;
     }
 }

@@ -1,7 +1,7 @@
 package com.gourmandd.mushrooms_tfc.block_entity;
 
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlockEntities;
 import net.dries007.tfc.common.blockentities.BerryBushBlockEntity;
-import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blockentities.TickingPlantBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -17,19 +17,19 @@ public class MushroomBlockEntity extends BerryBushBlockEntity {
     }
 
     public MushroomBlockEntity(BlockPos pos, BlockState state) {
-        this(TFCBlockEntities.BERRY_BUSH.get(), pos, state);
+        this(MushroomsTFCBlockEntities.MUSHROOMS.get(), pos, state);
     }
 
     @Override
     public BlockEntityType<?> getType() {
-        return TFCBlockEntities.BERRY_BUSH.get();
+        return MushroomsTFCBlockEntities.MUSHROOMS.get();
     }
 
     public static void reset(Level level, BlockPos pos) {
-        level.getBlockEntity(pos, TFCBlockEntities.BERRY_BUSH.get()).ifPresent(TickCounterBlockEntity::resetCounter);
+        level.getBlockEntity(pos, MushroomsTFCBlockEntities.MUSHROOMS.get()).ifPresent(TickCounterBlockEntity::resetCounter);
     }
 
     public static void resetPickedTick(Level level, BlockPos pos) {
-        level.getBlockEntity(pos, TFCBlockEntities.BERRY_BUSH.get()).ifPresent(TickingPlantBlockEntity::resetLastPickedCounter);
+        level.getBlockEntity(pos, MushroomsTFCBlockEntities.MUSHROOMS.get()).ifPresent(TickingPlantBlockEntity::resetLastPickedCounter);
     }
 }

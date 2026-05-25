@@ -2,12 +2,15 @@ package com.gourmandd.mushrooms_tfc.datagen.providers;
 
 import com.gourmandd.mushrooms_tfc.MushroomsTFC;
 import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlocks;
+import com.gourmandd.mushrooms_tfc.util.Mushrooms;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
+
+import java.util.stream.Stream;
 
 public class BuiltinItemModels extends ItemModelProvider {
 
@@ -17,7 +20,9 @@ public class BuiltinItemModels extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleBlock(MushroomsTFCBlocks.TEST_MUSHROOM);
+        Stream.of(Mushrooms.values()).forEach(mushroom -> {
+            simpleBlock(MushroomsTFCBlocks.MUSHROOMS.get(mushroom));
+        });
     }
 
     private void simpleBlock(DeferredHolder<Block, ? extends Block> block){
