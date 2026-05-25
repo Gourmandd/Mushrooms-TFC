@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 
 public class BuiltinBlockStates extends BlockStateProvider {
 
-    // whether to use a debug model, make sure to never commit the debug generated data.
     final static boolean debugDormant = true;
 
     public BuiltinBlockStates(PackOutput output,  ExistingFileHelper exFileHelper) {
@@ -61,17 +60,29 @@ public class BuiltinBlockStates extends BlockStateProvider {
 
     private void addShelfMushroom(DeferredHolder<Block, Block> block, String name){
 
-        ResourceLocation texture1 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_healthy");
-        ResourceLocation texture2 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_flowering");
-        ResourceLocation texture3 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_fruiting");
+        ResourceLocation large_texture1 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_large_healthy");
+        ResourceLocation large_texture2 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_large_flowering");
+        ResourceLocation large_texture3 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_large_fruiting");
+        ResourceLocation small_texture1 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_small_healthy");
+        ResourceLocation small_texture2 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_small_flowering");
+        ResourceLocation small_texture3 = ResourceLocation.parse("mushrooms_tfc:block/plant/" + name + "_small_fruiting");
 
-        ModelFile modelHealthy = createModel(getBlockModelString(block.getId()) + "_healthy", "mushrooms_tfc:block/shelf_mushroom").texture("particle", texture1);
-        ModelFile modelFlowering = createModel(getBlockModelString(block.getId()) + "_flowering", "mushrooms_tfc:block/shelf_mushroom").texture("particle", texture2);
-        ModelFile modelFruiting = createModel(getBlockModelString(block.getId()) + "_fruiting", "mushrooms_tfc:block/shelf_mushroom").texture("particle", texture3);
+        ModelFile modelHealthy = createModel(getBlockModelString(block.getId()) + "_healthy", "mushrooms_tfc:block/shelf_mushroom")
+                .texture("particle", large_texture1)
+                .texture("1", large_texture1)
+                .texture("2", small_texture1);
+        ModelFile modelFlowering = createModel(getBlockModelString(block.getId()) + "_flowering", "mushrooms_tfc:block/shelf_mushroom")
+                .texture("particle", large_texture1)
+                .texture("1", large_texture2)
+                .texture("2", small_texture2);
+        ModelFile modelFruiting = createModel(getBlockModelString(block.getId()) + "_fruiting", "mushrooms_tfc:block/shelf_mushroom")
+                .texture("particle", large_texture1)
+                .texture("1", large_texture3)
+                .texture("2", small_texture3);
         ModelFile modelDormant = createModel(getBlockModelString(block.getId()) + "_dormant", getDormantModel());
 
         // for the block's item model.
-        createModel(getBlockModelString(block.getId()), "mushrooms_tfc:block/shelf_mushroom").texture("particle", texture3);
+        createModel(getBlockModelString(block.getId()), "mushrooms_tfc:block/shelf_mushroom").texture("particle", large_texture3);
 
         VariantBlockStateBuilder builder = this.getVariantBuilder(block.get());
 

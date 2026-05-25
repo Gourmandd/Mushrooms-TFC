@@ -1,6 +1,8 @@
 {
   "parent": "mushrooms_tfc:block/shelf_mushroom",
   "textures": {
-    "particle": "mushrooms_tfc:block/plant/chicken_of_the_woods_healthy"
+    "1": "mushrooms_tfc:block/plant/chicken_of_the_woods_large_healthy",
+    "2": "mushrooms_tfc:block/plant/chicken_of_the_woods_small_healthy",
+    "particle": "mushrooms_tfc:block/plant/chicken_of_the_woods_large_healthy"
   }
 }
