@@ -50,15 +50,13 @@ public class ShelfMushroomBlock extends MushroomBlock {
     }
 
     public static boolean canSurvive(LevelReader level, BlockPos pos, Direction facing) {
-        BlockPos blockpos = pos.relative(facing.getOpposite());
-        BlockState blockstate = level.getBlockState(blockpos);
-        return blockstate.isFaceSturdy(level, blockpos, facing) && Helpers.isBlock(level.getBlockState(blockpos), BlockTags.LOGS);
+        BlockPos blockPos = pos.relative(facing.getOpposite());
+        BlockState blockState = level.getBlockState(blockPos);
+        return blockState.isFaceSturdy(level, blockPos, facing) && Helpers.isBlock(level.getBlockState(blockPos), BlockTags.LOGS);
     }
 
     @Override
     protected boolean moveToNearbyBlock(BlockState state, Level level, BlockPos pos){
-
-        // See comment in MushroomBlock for explanation, as this override has little change.
 
         for (int i = 1; i <= 5; i++){
             int oneInThree = (int) Math.floor(Math.random() * 3);
@@ -66,7 +64,7 @@ public class ShelfMushroomBlock extends MushroomBlock {
 
             BlockPos newPos = getNewXPos(oneInFour, getNewYPos(oneInThree, pos));
 
-            if (this.canSurvive(state, level, newPos) && level.getBlockState(newPos).canBeReplaced() && newPos != pos){
+            if (canSurvive(state, level, newPos) && level.getBlockState(newPos).canBeReplaced() && newPos != pos){
                 level.destroyBlock(pos, false);
                 level.setBlockAndUpdate(newPos, this.stateAfterPicking(state));
                 MushroomBlockEntity.resetPickedTick(level, newPos);
@@ -77,8 +75,8 @@ public class ShelfMushroomBlock extends MushroomBlock {
         return false;
     }
 
-    @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+
+    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState blockstate = this.defaultBlockState();
         LevelReader levelreader = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
@@ -116,7 +114,7 @@ public class ShelfMushroomBlock extends MushroomBlock {
         return state.getValue(LIFECYCLE).active() ? AABBS.get(state.getValue(FACING)) : DORMANT_PLANT;
     }
 
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState state, Direction facing,  BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         return facing.getOpposite() == state.getValue(FACING) && !state.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : state;
     }
 }
