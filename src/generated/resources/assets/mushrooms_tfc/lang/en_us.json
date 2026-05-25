@@ -1,0 +1,9 @@
+{
+  "block.mushrooms_tfc.plant.chicken_of_the_woods": "Chicken Of The Woods",
+  "block.mushrooms_tfc.plant.fly_agaric": "Fly Agaric",
+  "block.mushrooms_tfc.plant.portobello": "Portobello",
+  "item.mushrooms_tfc.food.chicken_of_the_woods": "Chicken Of The Woods",
+  "item.mushrooms_tfc.food.fly_agaric": "Fly Agaric",
+  "item.mushrooms_tfc.food.portobello": "Portobello",
+  "item_group.mushrooms.mushrooms_tfc": "Mushrooms TFC Items"
+}
