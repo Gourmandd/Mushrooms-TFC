@@ -37,6 +37,7 @@ public class MushroomsTFC {
         MushroomsTFCBlocks.BLOCKS.register(modEventBus);
         MushroomsTFCBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         MushroomsTFCItems.ITEMS.register(modEventBus);
+        CreativeTabs.CREATIVE_TABS.register(modEventBus);
 
         modEventBus.addListener(DatagenEntryPoint::gatherData);
 
