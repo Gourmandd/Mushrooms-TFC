@@ -19,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -33,10 +34,10 @@ public abstract class MushroomBlock extends StationaryBerryBushBlock {
 
     public final RegistryMushroom mushroomType;
 
-    private static final VoxelShape FULL_PLANT = box(2, 0, 2, 14, 8, 14);
+    protected static final VoxelShape FULL_PLANT = box(2, 0, 2, 14, 8, 14);
 
     // TODO: Change back
-    private static final VoxelShape DORMANT_PLANT = box(2, 0, 2, 14, 8, 14);
+    protected static final VoxelShape DORMANT_PLANT = box(2, 0, 2, 14, 8, 14);
 
     public MushroomBlock(ExtendedProperties properties, Supplier<ClimateRange> climateRange, Supplier<? extends Item> productItem, Lifecycle[] lifecycle, RegistryMushroom mushroomType) {
         super(properties, productItem, lifecycle, climateRange);
@@ -46,13 +47,17 @@ public abstract class MushroomBlock extends StationaryBerryBushBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-        // TODO: Ran twice, no idea how to filter out one of them.
-
         if (state.getValue(LIFECYCLE) == FRUITING && stack.is(TFCTags.Items.TOOLS_KNIFE)) {
             level.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.PLAYERS, 1.0F, level.getRandom().nextFloat() + 0.7F + 0.3F);
             if (!level.isClientSide()) {
-                ItemHandlerHelper.giveItemToPlayer(player, this.getProductItem(level.random));
-                moveToNearbyBlock(state, level, pos);
+                if (moveToNearbyBlock(state, level, pos)){
+                    ItemHandlerHelper.giveItemToPlayer(player, this.getProductItem(level.random));
+                } else {
+                    // it failed to move
+                    ItemHandlerHelper.giveItemToPlayer(player, this.getProductItem(level.random));
+                    level.setBlockAndUpdate(pos, this.stateAfterPicking(state));
+                    MushroomBlockEntity.resetPickedTick(level, pos);
+                }
             }
 
             return ItemInteractionResult.CONSUME;
@@ -84,7 +89,13 @@ public abstract class MushroomBlock extends StationaryBerryBushBlock {
         return Helpers.isBlock(level.getBlockState(pos), this.mushroomType.getSupportingBlockTag());
     }
 
-    protected void moveToNearbyBlock(BlockState state, Level level, BlockPos pos){
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockPos belowPos = pos.below();
+        return this.mayPlaceOn(level.getBlockState(belowPos), level, belowPos);
+    }
+
+    protected boolean moveToNearbyBlock(BlockState state, Level level, BlockPos pos){
 
         // This might need comments to guide through what is meant to be happening.
         // first roll a 1/3 chance to see if its new y-level will be: (0: pos -1, 1: pos, 2: pos + 1)
@@ -96,13 +107,15 @@ public abstract class MushroomBlock extends StationaryBerryBushBlock {
 
             BlockPos newPos = getNewXPos(oneInFour, getNewYPos(oneInThree, pos));
 
-            if (this.mayPlaceOn(state, level, newPos.below()) && level.getBlockState(newPos).canBeReplaced()){
+            if (canSurvive(state, level, newPos) && level.getBlockState(newPos).canBeReplaced() && newPos != pos){
                 level.destroyBlock(pos, false);
                 level.setBlockAndUpdate(newPos, this.stateAfterPicking(state));
                 MushroomBlockEntity.resetPickedTick(level, newPos);
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 
     protected BlockPos getNewYPos(int number, BlockPos pos){

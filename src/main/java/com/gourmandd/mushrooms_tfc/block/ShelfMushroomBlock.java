@@ -1,5 +1,7 @@
 package com.gourmandd.mushrooms_tfc.block;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.gourmandd.mushrooms_tfc.block_entity.MushroomBlockEntity;
 import com.gourmandd.mushrooms_tfc.util.RegistryMushroom;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -11,24 +13,33 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ShelfMushroomBlock extends MushroomBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-
+    private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(
+            ImmutableMap.of(
+                    Direction.NORTH, Block.box(3.5F, 3.0F, 11.0F, 12.5F, 13.0F, 16.0F),
+                    Direction.SOUTH, Block.box(3.5F, 3.0F, 0.0F, 12.5F, 13.0F, 5.0F),
+                    Direction.WEST, Block.box(11.0F, 3.0F, 2.5F, 16.0F, 13.0F, 12.5F),
+                    Direction.EAST, Block.box(0.0F, 3.0F, 2.5F, 5.0F, 13.0F, 12.5F))
+    );
+    
     public ShelfMushroomBlock(ExtendedProperties properties, Supplier<ClimateRange> climateRange, Supplier<? extends Item> productItem, Lifecycle[] lifecycle, RegistryMushroom mushroomType) {
         super(properties, climateRange, productItem, lifecycle, mushroomType);
     }
@@ -45,24 +56,25 @@ public class ShelfMushroomBlock extends MushroomBlock {
     }
 
     @Override
-    protected void moveToNearbyBlock(BlockState state, Level level, BlockPos pos){
+    protected boolean moveToNearbyBlock(BlockState state, Level level, BlockPos pos){
 
-        // This might need comments to guide through what is meant to be happening.
-        // first roll a 1/3 chance to see if its new y-level will be: (0: pos -1, 1: pos, 2: pos + 1)
-        // second roll a 1/5 chance to see if its new x-level will be: (0: + 1 south, 1: + 1 west, 2: + 1 east, 3: + 1 north, 4: the same)
+        // See comment in MushroomBlock for explanation, as this override has little change.
+
         for (int i = 1; i <= 5; i++){
             int oneInThree = (int) Math.floor(Math.random() * 3);
             int oneInFour = (int) Math.floor(Math.random() * 4);
 
             BlockPos newPos = getNewXPos(oneInFour, getNewYPos(oneInThree, pos));
 
-            if (this.mayPlaceOn(state, level, newPos.below()) && level.getBlockState(newPos).canBeReplaced()){
+            if (this.canSurvive(state, level, newPos) && level.getBlockState(newPos).canBeReplaced() && newPos != pos){
                 level.destroyBlock(pos, false);
                 level.setBlockAndUpdate(newPos, this.stateAfterPicking(state));
                 MushroomBlockEntity.resetPickedTick(level, newPos);
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 
     @Nullable
@@ -96,5 +108,15 @@ public class ShelfMushroomBlock extends MushroomBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
         builder.add(LIFECYCLE, STAGE);
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
+    {
+        return state.getValue(LIFECYCLE).active() ? AABBS.get(state.getValue(FACING)) : DORMANT_PLANT;
+    }
+
+    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        return facing.getOpposite() == state.getValue(FACING) && !state.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : state;
     }
 }
