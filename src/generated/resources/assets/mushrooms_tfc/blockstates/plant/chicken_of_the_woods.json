@@ -1,16 +1,64 @@
 {
   "variants": {
-    "lifecycle=dormant": {
+    "facing=east,lifecycle=dormant": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_dormant",
+      "y": 90
+    },
+    "facing=east,lifecycle=flowering": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering",
+      "y": 90
+    },
+    "facing=east,lifecycle=fruiting": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_fruiting",
+      "y": 90
+    },
+    "facing=east,lifecycle=healthy": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_healthy",
+      "y": 90
+    },
+    "facing=north,lifecycle=dormant": {
       "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_dormant"
     },
-    "lifecycle=flowering": {
+    "facing=north,lifecycle=flowering": {
       "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering"
     },
-    "lifecycle=fruiting": {
+    "facing=north,lifecycle=fruiting": {
       "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_fruiting"
     },
-    "lifecycle=healthy": {
+    "facing=north,lifecycle=healthy": {
       "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_healthy"
+    },
+    "facing=south,lifecycle=dormant": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_dormant",
+      "y": 180
+    },
+    "facing=south,lifecycle=flowering": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering",
+      "y": 180
+    },
+    "facing=south,lifecycle=fruiting": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_fruiting",
+      "y": 180
+    },
+    "facing=south,lifecycle=healthy": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_healthy",
+      "y": 180
+    },
+    "facing=west,lifecycle=dormant": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_dormant",
+      "y": 270
+    },
+    "facing=west,lifecycle=flowering": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering",
+      "y": 270
+    },
+    "facing=west,lifecycle=fruiting": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_fruiting",
+      "y": 270
+    },
+    "facing=west,lifecycle=healthy": {
+      "model": "mushrooms_tfc:block/plant/chicken_of_the_woods_healthy",
+      "y": 270
     }
   }
 }

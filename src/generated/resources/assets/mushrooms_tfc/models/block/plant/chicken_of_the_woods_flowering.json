@@ -1,7 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "mushrooms_tfc:block/shelf_mushroom",
   "textures": {
-    "cross": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering",
     "particle": "mushrooms_tfc:block/plant/chicken_of_the_woods_flowering"
   }
 }
