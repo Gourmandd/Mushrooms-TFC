@@ -4,6 +4,7 @@ import com.gourmandd.mushrooms_tfc.block.FieldMushroomBlock;
 import com.gourmandd.mushrooms_tfc.block.ShelfMushroomBlock;
 import com.gourmandd.mushrooms_tfc.block.SymbioteMushroomBlock;
 import com.gourmandd.mushrooms_tfc.item.MushroomBlockItem;
+import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCBlockEntities;
 import com.gourmandd.mushrooms_tfc.registry.MushroomsTFCItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
@@ -109,13 +110,13 @@ public enum Mushrooms implements RegistryMushroom, StringRepresentable {
         //TODO: create and set proper climate ranges.
         switch (type){
             case FIELD -> {
-                return new FieldMushroomBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.GRASS), ClimateRanges.TEST_MUSHROOM, MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
+                return new FieldMushroomBlock(createBlockProperties(mapColor), ClimateRanges.MUSHROOMS.get(this), MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
             }
             case SHELF -> {
-                return new ShelfMushroomBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.GRASS), ClimateRanges.TEST_MUSHROOM, MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
+                return new ShelfMushroomBlock(createBlockProperties(mapColor), ClimateRanges.MUSHROOMS.get(this), MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
             }
             case SYMBIOTE -> {
-                return new SymbioteMushroomBlock(ExtendedProperties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.GRASS), ClimateRanges.TEST_MUSHROOM, MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
+                return new SymbioteMushroomBlock(createBlockProperties(mapColor), ClimateRanges.MUSHROOMS.get(this), MushroomsTFCItems.MUSHROOMS.get(this), lifecycle, this);
             }
         }
         return null;
@@ -123,6 +124,10 @@ public enum Mushrooms implements RegistryMushroom, StringRepresentable {
 
     public BlockItem createItem(Block block) {
         return new MushroomBlockItem(block, ClimateRanges.MUSHROOMS.get(this), lifecycle);
+    }
+
+    private ExtendedProperties createBlockProperties(MapColor mapColor) {
+        return ExtendedProperties.of().mapColor(mapColor).sound(SoundType.GRASS).strength(0.6f).noOcclusion().randomTicks().blockEntity(MushroomsTFCBlockEntities.MUSHROOMS).flammableLikeLeaves();
     }
 
     @Override
