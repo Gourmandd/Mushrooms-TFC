@@ -1,0 +1,11 @@
+{
+  "decay_modifier": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "mushrooms_tfc:food/fly_agaric"
+  },
+  "protein": 0.1,
+  "saturation": 4.5,
+  "vegetables": 0.8,
+  "water": 3.0
+}

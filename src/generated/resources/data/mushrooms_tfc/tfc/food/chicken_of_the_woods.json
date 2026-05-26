@@ -1,0 +1,11 @@
+{
+  "decay_modifier": 1.0,
+  "hunger": 4,
+  "ingredient": {
+    "item": "mushrooms_tfc:food/chicken_of_the_woods"
+  },
+  "protein": 1.0,
+  "saturation": 4.5,
+  "vegetables": 0.2,
+  "water": 3.0
+}

@@ -28,6 +28,7 @@ public class DatagenEntryPoint {
         add(event, new BuiltinBlockTags(output, lookup, event.getExistingFileHelper()));
         add(event, new BuiltinClimateRanges(output, lookup));
         add(event, new BuiltinLanguageProvider(output));
+        add(event, new BuiltinFoodData(output, lookup));
     }
 
     private static <T extends DataProvider> T add(GatherDataEvent event, T provider)
