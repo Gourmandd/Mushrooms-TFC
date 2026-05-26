@@ -17,7 +17,7 @@ public class MushroomsTFCItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MushroomsTFC.MODID);
 
     public static final Map<Mushrooms, DeferredHolder<Item, Item>> MUSHROOMS = Helpers.mapOf(Mushrooms.class, mushroom ->
-            register("food/" + mushroom.name().toLowerCase(Locale.ROOT))
+            register("food/" + mushroom.getSerializedName(), () -> new Item(new Item.Properties().food(mushroom.getFoodProperties())))
     );
 
     private static DeferredHolder<Item, Item> register(String name)
