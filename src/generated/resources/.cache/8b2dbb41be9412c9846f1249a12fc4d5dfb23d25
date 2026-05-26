@@ -1,3 +1,5 @@
-// 1.21.1	2026-04-02T10:20:38.896202345	Tags for minecraft:block mod id mushrooms_tfc
-b147fcff5c0b4d72df1cb7809b063b2562180832 data/mushrooms_tfc/tags/block/chicken_of_the_woods_grow_on.json
-69c396cb051bbe9a130e6979b67065e5041b179d data/mushrooms_tfc/tags/block/mushrooms_grow_on.json
+// 1.21.1	2026-05-26T14:29:00.550787657	Tags for minecraft:block mod id mushrooms_tfc
+c785c766163afc79e8c7544edb9e9f33af1ea6ed data/mushrooms_tfc/tags/block/chicken_of_the_woods_grow_on.json
+c6ff1c555cea14a9da0a8fee48d39a82177c608c data/mushrooms_tfc/tags/block/fly_agaric_grow_on.json
+5e8f8cf3ea441fc51fc27940fd14683646a91335 data/mushrooms_tfc/tags/block/mushrooms_grow_on.json
+fa3f46b0e3d4875f46b38883cb59eb69b2f64e27 data/mushrooms_tfc/tags/block/portobello_grow_on.json

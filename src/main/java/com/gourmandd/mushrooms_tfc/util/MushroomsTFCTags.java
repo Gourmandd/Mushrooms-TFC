@@ -19,6 +19,8 @@ public class MushroomsTFCTags {
         }
 
         public static TagKey<Block> MUSHROOMS_GROWS_ON = createTag("mushrooms_grow_on");
+        public static TagKey<Block> PORTOBELLO_GROWS_ON = createTag("portobello_grow_on");
+        public static TagKey<Block> FLY_AGARIC_GROWS_ON = createTag("fly_agaric_grow_on");
         public static TagKey<Block> CHICKEN_OF_THE_WOODS_GROW_ON = createTag("chicken_of_the_woods_grow_on");
     }
 }

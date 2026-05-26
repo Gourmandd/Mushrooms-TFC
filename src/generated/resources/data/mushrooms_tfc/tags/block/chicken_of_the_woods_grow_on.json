@@ -1,5 +1,21 @@
 {
   "values": [
-    "#minecraft:logs"
+    "tfc:wood/log/oak",
+    "tfc:wood/log/hickory",
+    "tfc:wood/log/maple",
+    "tfc:wood/log/aspen",
+    "tfc:wood/log/chestnut",
+    "tfc:wood/log/willow",
+    "tfc:wood/log/pine",
+    "tfc:wood/log/white_cedar",
+    "tfc:wood/log/spruce",
+    {
+      "id": "afc:wood/log/beech",
+      "required": false
+    },
+    {
+      "id": "afc:wood/log/eucalyptus",
+      "required": false
+    }
   ]
 }

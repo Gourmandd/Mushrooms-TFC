@@ -1,5 +1,6 @@
 package com.gourmandd.mushrooms_tfc.block;
 
+import com.gourmandd.mushrooms_tfc.util.MushroomsTFCTags;
 import com.gourmandd.mushrooms_tfc.util.RegistryMushroom;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
@@ -32,7 +33,8 @@ public class SymbioteMushroomBlock extends MushroomBlock {
                     pos.below()
             };
             for (BlockPos position : positions){
-                if (Helpers.isBlock(level.getBlockState(position), BlockTags.LOGS)){
+
+                if (Helpers.isBlock(level.getBlockState(position), this.mushroomType.getSupportingBlockTag())){
                     return true;
                 }
             }
@@ -41,6 +43,6 @@ public class SymbioteMushroomBlock extends MushroomBlock {
     }
 
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return Helpers.isBlock(level.getBlockState(pos), this.mushroomType.getSupportingBlockTag()) || Helpers.isBlock(level.getBlockState(pos), BlockTags.LOGS);
+        return Helpers.isBlock(level.getBlockState(pos), MushroomsTFCTags.Blocks.MUSHROOMS_GROWS_ON) || Helpers.isBlock(level.getBlockState(pos), BlockTags.LOGS);
     }
 }
