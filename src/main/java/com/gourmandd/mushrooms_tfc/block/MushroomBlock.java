@@ -4,7 +4,6 @@ import com.gourmandd.mushrooms_tfc.block_entity.MushroomBlockEntity;
 import com.gourmandd.mushrooms_tfc.util.RegistryMushroom;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
 import net.dries007.tfc.common.blocks.plant.fruit.StationaryBerryBushBlock;
 import net.dries007.tfc.util.Helpers;
@@ -20,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -30,7 +30,7 @@ import java.util.function.Supplier;
 
 import static net.dries007.tfc.common.blocks.plant.fruit.Lifecycle.*;
 
-public abstract class MushroomBlock extends StationaryBerryBushBlock {
+public class MushroomBlock extends StationaryBerryBushBlock {
 
     public final RegistryMushroom mushroomType;
 
@@ -75,8 +75,7 @@ public abstract class MushroomBlock extends StationaryBerryBushBlock {
     @Override
     protected BlockState getDeadState(BlockState state)
     {
-        //TODO: Change
-        return TFCBlocks.DEAD_BERRY_BUSH.get().defaultBlockState().setValue(STAGE, state.getValue(STAGE));
+        return Blocks.AIR.defaultBlockState();
     }
 
     @Override

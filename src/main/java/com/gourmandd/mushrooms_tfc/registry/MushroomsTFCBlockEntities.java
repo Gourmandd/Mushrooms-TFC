@@ -2,7 +2,6 @@ package com.gourmandd.mushrooms_tfc.registry;
 
 import com.gourmandd.mushrooms_tfc.MushroomsTFC;
 import com.gourmandd.mushrooms_tfc.block_entity.MushroomBlockEntity;
-import net.dries007.tfc.common.blockentities.BerryBushBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.core.registries.Registries;
@@ -19,7 +18,7 @@ public class MushroomsTFCBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MushroomsTFC.MODID);
 
-    public static final TFCBlockEntities.Id<BerryBushBlockEntity> MUSHROOMS = register("mushroom", MushroomBlockEntity::new, Stream.of(
+    public static final TFCBlockEntities.Id<MushroomBlockEntity> MUSHROOMS = register("mushroom", MushroomBlockEntity::new, Stream.of(
             MushroomsTFCBlocks.MUSHROOMS.values()
     ).flatMap(Collection::stream));
 

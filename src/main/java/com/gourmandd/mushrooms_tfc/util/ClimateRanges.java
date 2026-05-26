@@ -10,8 +10,6 @@ import java.util.Locale;
 import java.util.Map;
 
 public class ClimateRanges {
-    
-    public static final DataManager.Reference<ClimateRange> TEST_MUSHROOM = register("test_mushroom");
 
     public static final Map<Mushrooms, DataManager.Reference<ClimateRange>> MUSHROOMS = Helpers.mapOf(Mushrooms.class, mushroom -> register("plant/" + mushroom.name()));
 

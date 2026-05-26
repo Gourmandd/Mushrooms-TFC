@@ -75,7 +75,7 @@ public class ShelfMushroomBlock extends MushroomBlock {
     }
 
 
-    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState blockstate = this.defaultBlockState();
         LevelReader levelreader = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
@@ -103,8 +103,7 @@ public class ShelfMushroomBlock extends MushroomBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-        builder.add(LIFECYCLE, STAGE);
+        builder.add(FACING, LIFECYCLE, STAGE);
     }
 
     @Override
