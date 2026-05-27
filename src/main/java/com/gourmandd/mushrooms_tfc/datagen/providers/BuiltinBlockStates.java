@@ -44,7 +44,7 @@ public class BuiltinBlockStates extends BlockStateProvider {
         ModelFile modelHealthy = createModel(getBlockModelString(block.getId()) + "_healthy", "minecraft:cross").texture("cross", texture1).texture("particle", texture1);
         ModelFile modelFlowering = createModel(getBlockModelString(block.getId()) + "_flowering", "minecraft:cross").texture("cross", texture2).texture("particle", texture2);
         ModelFile modelFruiting = createModel(getBlockModelString(block.getId()) + "_fruiting", "minecraft:cross").texture("cross", texture3).texture("particle", texture3);
-        ModelFile modelDormant = createModel(getBlockModelString(block.getId()) + "_dormant", getDormantModel());
+        ModelFile modelDormant = createModel(getBlockModelString(block.getId()) + "_dormant", getDormantModel()).texture("particle", texture3);
 
         // for the block's item model.
         createModel(getBlockModelString(block.getId()), "minecraft:cross").texture("cross", texture3).texture("particle", texture3);
@@ -79,7 +79,7 @@ public class BuiltinBlockStates extends BlockStateProvider {
                 .texture("particle", large_texture1)
                 .texture("1", large_texture3)
                 .texture("2", small_texture3);
-        ModelFile modelDormant = createModel(getBlockModelString(block.getId()) + "_dormant", getDormantModel());
+        ModelFile modelDormant = createModel(getBlockModelString(block.getId()) + "_dormant", getDormantModel()).texture("particle", small_texture3);
 
         // for the block's item model.
         createModel(getBlockModelString(block.getId()), "minecraft:cross").texture("cross", large_texture3).texture("particle", large_texture3);

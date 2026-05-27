@@ -1,3 +1,6 @@
 {
-  "parent": "minecraft:block/air"
+  "parent": "minecraft:block/air",
+  "textures": {
+    "particle": "mushrooms_tfc:block/plant/chicken_of_the_woods_small_fruiting"
+  }
 }
