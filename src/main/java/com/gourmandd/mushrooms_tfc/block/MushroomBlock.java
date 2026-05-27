@@ -36,8 +36,10 @@ public class MushroomBlock extends StationaryBerryBushBlock {
 
     protected static final VoxelShape FULL_PLANT = box(2, 0, 2, 14, 8, 14);
 
-    //protected static final VoxelShape DORMANT_PLANT = box(0, 0, 0, 0, 0, 0);
-    protected static final VoxelShape DORMANT_PLANT = box(2, 0, 2, 14, 8, 14);
+    protected static final VoxelShape DORMANT_PLANT = box(0, 0, 0, 0, 0, 0);
+
+    // for debug purposes.
+    //protected static final VoxelShape DORMANT_PLANT = box(2, 0, 2, 14, 8, 14);
 
     public MushroomBlock(ExtendedProperties properties, Supplier<ClimateRange> climateRange, Supplier<? extends Item> productItem, Lifecycle[] lifecycle, RegistryMushroom mushroomType) {
         super(properties, productItem, lifecycle, climateRange);

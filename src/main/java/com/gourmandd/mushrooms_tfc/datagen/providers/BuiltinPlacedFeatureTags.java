@@ -42,6 +42,6 @@ public class BuiltinPlacedFeatureTags extends TagsProvider<PlacedFeature> {
 
         this.tag(TFC_LAND_PLANTS)
                 .addTag(MushroomsTFCTags.PlacedFeatures.MUSHROOMS)
-                .replace(true);
+                .replace(false);
     }
 }
