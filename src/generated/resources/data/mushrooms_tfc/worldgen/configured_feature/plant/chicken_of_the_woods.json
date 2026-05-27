@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mushrooms_tfc:plant/chicken_of_the_woods",
+        "Properties": {
+          "facing": "north",
+          "lifecycle": "fruiting",
+          "stage": "0"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "feature": "mushrooms_tfc:plant/chicken_of_the_woods_patch",
+  "placement": [
+    {
+      "type": "tfc:climate",
+      "max_groundwater": 330.0,
+      "max_temperature": 14.0,
+      "min_groundwater": 80.0,
+      "min_temperature": -1.4
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 10
+    }
+  ]
+}

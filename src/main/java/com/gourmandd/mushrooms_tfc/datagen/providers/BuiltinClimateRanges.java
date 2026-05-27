@@ -19,9 +19,9 @@ public class BuiltinClimateRanges extends DataManagerProvider<ClimateRange> {
 
     @Override
     protected void addData(HolderLookup.Provider provider) {
-        add(ClimateRanges.MUSHROOMS, Mushrooms.PORTOBELLO, b -> b.hydration(0, 100).temperature(3, 12.4f));
-        add(ClimateRanges.MUSHROOMS, Mushrooms.FLY_AGARIC, b -> b.hydration(30, 100).temperature(-3, 13.6f));
-        add(ClimateRanges.MUSHROOMS, Mushrooms.CHICKEN_OF_THE_WOODS, b -> b.hydration(0, 100).temperature(-6, 15.2f));
+        add(ClimateRanges.MUSHROOMS, Mushrooms.PORTOBELLO, b -> b.hydration(20, 80).temperature(2, 14.4f));
+        add(ClimateRanges.MUSHROOMS, Mushrooms.FLY_AGARIC, b -> b.hydration(30, 90).temperature(-2, 15.6f));
+        add(ClimateRanges.MUSHROOMS, Mushrooms.CHICKEN_OF_THE_WOODS, b -> b.hydration(10, 100).temperature(-3, 18.2f));
     }
 
     private <T> void add(Map<T, DataManager.Reference<ClimateRange>> map, T value, UnaryOperator<ClimateRange.Builder> builder)

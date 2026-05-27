@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": "mushrooms_tfc:plant/fly_agaric",
+    "tries": 16,
+    "xz_spread": 7,
+    "y_spread": 3
+  }
+}

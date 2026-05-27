@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class MushroomsTFCTags {
 
@@ -22,5 +23,17 @@ public class MushroomsTFCTags {
         public static TagKey<Block> PORTOBELLO_GROWS_ON = createTag("portobello_grow_on");
         public static TagKey<Block> FLY_AGARIC_GROWS_ON = createTag("fly_agaric_grow_on");
         public static TagKey<Block> CHICKEN_OF_THE_WOODS_GROW_ON = createTag("chicken_of_the_woods_grow_on");
+    }
+
+    public static class PlacedFeatures {
+
+        private static TagKey<PlacedFeature> createTag(String name){
+            return TagKey.create(
+                    Registries.PLACED_FEATURE,
+                    ResourceLocation.fromNamespaceAndPath(MushroomsTFC.MODID, name)
+            );
+        }
+
+        public static TagKey<PlacedFeature> MUSHROOMS = createTag("plant/mushrooms");
     }
 }
