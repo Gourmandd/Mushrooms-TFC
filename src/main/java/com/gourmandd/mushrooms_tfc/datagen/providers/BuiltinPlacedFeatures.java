@@ -84,7 +84,7 @@ public class BuiltinPlacedFeatures {
                                             mushroom.isFieldMushroom()
                                     ),
                                     InSquarePlacement.spread(),
-                                    RarityFilter.onAverageOnceEvery(10)
+                                    RarityFilter.onAverageOnceEvery(30)
                             )
                     )
             );
