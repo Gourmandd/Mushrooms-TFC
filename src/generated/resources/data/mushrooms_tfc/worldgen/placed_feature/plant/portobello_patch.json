@@ -4,7 +4,7 @@
     {
       "type": "tfc:climate",
       "max_forest": 2,
-      "max_groundwater": 270.0,
+      "max_groundwater": 320.0,
       "max_temperature": 14.0,
       "min_groundwater": 110.0,
       "min_temperature": -1.4

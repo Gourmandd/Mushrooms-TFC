@@ -44,9 +44,9 @@ public class BuiltinPlacedFeatures {
 
     // using climate ranges to hold info, not intended purpose, I think.
     public static final Map<Mushrooms, ClimateRange> CLIMATES = ImmutableMap.<Mushrooms, ClimateRange>builder()
-            .put(Mushrooms.FLY_AGARIC, new ClimateRange(100, 250, 0, -1.4f, 14f, 0))
-            .put(Mushrooms.PORTOBELLO, new ClimateRange(110, 270, 0, -1.4f, 14f, 0))
-            .put(Mushrooms.CHICKEN_OF_THE_WOODS, new ClimateRange(80, 330, 0, -1.4f, 14f, 0))
+            .put(Mushrooms.FLY_AGARIC, new ClimateRange(100, 300, 0, -1.4f, 14f, 0))
+            .put(Mushrooms.PORTOBELLO, new ClimateRange(110, 320, 0, -1.4f, 14f, 0))
+            .put(Mushrooms.CHICKEN_OF_THE_WOODS, new ClimateRange(80, 380, 0, -1.4f, 14f, 0))
             .build();
 
     public static void bootstrap(BootstrapContext<PlacedFeature> ctx){
