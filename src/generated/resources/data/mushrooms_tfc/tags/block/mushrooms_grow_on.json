@@ -3,6 +3,10 @@
     {
       "id": "#tfc:grass",
       "required": false
+    },
+    {
+      "id": "#tfc:duff",
+      "required": false
     }
   ]
 }

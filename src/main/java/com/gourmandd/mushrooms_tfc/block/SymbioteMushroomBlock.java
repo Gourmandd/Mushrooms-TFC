@@ -7,7 +7,6 @@ import net.dries007.tfc.common.blocks.plant.fruit.Lifecycle;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -42,7 +41,8 @@ public class SymbioteMushroomBlock extends MushroomBlock {
         return false;
     }
 
+    @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return Helpers.isBlock(level.getBlockState(pos), MushroomsTFCTags.Blocks.MUSHROOMS_GROWS_ON) || Helpers.isBlock(level.getBlockState(pos), BlockTags.LOGS);
+        return Helpers.isBlock(level.getBlockState(pos), MushroomsTFCTags.Blocks.MUSHROOMS_GROWS_ON) || Helpers.isBlock(level.getBlockState(pos), this.mushroomType.getSupportingBlockTag());
     }
 }

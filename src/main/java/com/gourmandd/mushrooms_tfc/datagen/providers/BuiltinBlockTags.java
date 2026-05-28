@@ -32,7 +32,8 @@ public class BuiltinBlockTags extends TagsProvider<Block> {
         String AFC = "afc";
 
         this.tag(MushroomsTFCTags.Blocks.MUSHROOMS_GROWS_ON)
-                .addOptionalTag(TFCTags.Blocks.GRASS);
+                .addOptionalTag(TFCTags.Blocks.GRASS)
+                .addOptionalTag(TFCTags.Blocks.DUFF);
 
         this.tag(MushroomsTFCTags.Blocks.PORTOBELLO_GROWS_ON)
                 .addOptionalTag(TFCTags.Blocks.GRASS)
